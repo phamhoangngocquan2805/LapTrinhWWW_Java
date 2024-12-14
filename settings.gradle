@@ -1,0 +1,7 @@
+pluginManagement {
+	repositories {
+		maven { url 'https://repo.spring.io/snapshot' }
+		gradlePluginPortal()
+	}
+}
+rootProject.name = '20001031_PhamHoangNgocQuan_Lab05'
