@@ -10,6 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@ToString(exclude = "address")
 public class Candidate {
     @Id
     @Column(name = "id", nullable = false)

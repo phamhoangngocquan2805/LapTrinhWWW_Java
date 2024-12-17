@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Controller
-//@RequestMapping("/api/candidates")
+@RequestMapping("/candidates")
 public class CandidateController {
 
     @Autowired

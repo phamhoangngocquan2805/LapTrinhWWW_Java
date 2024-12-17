@@ -9,6 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@ToString(exclude = "candidate")
 public class Address {
     @Id
     @Column(name = "id", nullable = false)
