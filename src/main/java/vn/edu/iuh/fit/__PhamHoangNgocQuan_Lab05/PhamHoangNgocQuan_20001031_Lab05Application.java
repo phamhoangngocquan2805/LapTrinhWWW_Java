@@ -17,49 +17,47 @@ import java.time.LocalDate;
 import java.util.Random;
 
 @SpringBootApplication
-@RestController
 public class PhamHoangNgocQuan_20001031_Lab05Application {
-
-	@Autowired
-	private AddressRepository addressRepository;
-	@Autowired
-	private CandidateRepository candidateRepository;
-	@Autowired
-	private SkillRepository skillRepository;
-	@Autowired
-	private CompanyRepository companyRepository;
-	@Autowired
-	private JobRepository jobRepository;
-	@Autowired
-	private JobSkillRepository jobSkillRepository;
-	@Autowired
-	private CandidateSkillRepository candidateSkillRepository;
-	@Autowired
-	private ExperienceRepository experienceRepository;
 
 
 	public static void main(String[] args) {
 		SpringApplication.run(PhamHoangNgocQuan_20001031_Lab05Application.class, args);
 	}
 
-//	@Bean
-//	CommandLineRunner initData(){
-//		return args -> {
-//			Random rnd =new Random();
-//			for (int i = 1; i < 1000; i++) {
-//				Address add = new Address(rnd.nextInt(1,1000)+"","Quang Trung","HCM",
-//						rnd.nextInt(70000,80000)+"", CountryCode.VN );
-//				addressRepository.save(add);
-//				Candidate can=new Candidate("Name #"+i,
-//						LocalDate.of(1998,rnd.nextInt(1,13),rnd.nextInt(1,29)),
-//						add,
-//						rnd.nextLong(1111111111L,9999999999L)+"",
-//						"email_"+i+"@gmail.com");
-//				candidateRepository.save(can);
-//				System.out.println("Added: " +can);
-//			}
-//		};
-//	}
+	@Autowired
+	private AddressRepository addressRepository;
+	@Autowired
+	private CandidateRepository candidateRepository;
+	@Autowired
+	private CompanyRepository companyRepository;
+	@Autowired
+	private JobRepository jobRepository;
+	@Autowired
+	private SkillRepository skillRepository;
+	@Autowired
+	private ExperienceRepository experienceRepository;
+	@Autowired
+	private CandidateSkillRepository candidateSkillRepository;
+	@Autowired
+	private JobSkillRepository jobSkillRepository;
+
+
+	@Bean
+	CommandLineRunner initData(){
+		return args -> {
+			Random rnd =new Random();
+			for (int i = 1; i < 1000; i++) {
+				Address add = new Address("Quang Trung","HCM", CountryCode.VN,rnd.nextInt(1,1000)+"",
+						rnd.nextInt(70000,80000)+"" );
+				addressRepository.save(add);
+				Candidate can=new Candidate(
+						LocalDate.of(1998,rnd.nextInt(1,13),rnd.nextInt(1,29)),"email_"+i+"@gmail.com", "Name #"+i,
+						rnd.nextLong(1111111111L,9999999999L)+"", add);
+				candidateRepository.save(can);
+				System.out.println("Added: " +can);
+			}
+		};
+	}
 
 
 }

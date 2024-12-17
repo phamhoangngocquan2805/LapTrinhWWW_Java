@@ -1,28 +1,32 @@
 package vn.edu.iuh.fit.__PhamHoangNgocQuan_Lab05.backend.models;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.util.List;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "job")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Job {
-
     @Id
+    @Column(name = "job_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "job_id")
-    private Long jobId;
+    private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "company", referencedColumnName = "com_id")
-    private Company company;
+    @Column(name = "job_desc", nullable = false, length = 2000)
+    private String jobDesc;
 
-    @Column(name = "job_name", length = 255)
+    @Column(name = "job_name", nullable = false)
     private String jobName;
 
-    @Column(name = "job_desc", length = 2000)
-    private String jobDesc;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company")
+    private Company company;
+
+    @OneToMany(mappedBy = "job")
+    private List<JobSkill> jobSkills;
+
 }

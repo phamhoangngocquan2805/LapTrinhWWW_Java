@@ -12,7 +12,7 @@ import java.util.Objects;
 @Setter
 @Embeddable
 public class JobSkillId implements java.io.Serializable {
-    private static final long serialVersionUID = -6761268611588716695L;
+    private static final long serialVersionUID = -6990720081250047828L;
     @Column(name = "job_id", nullable = false)
     private Long jobId;
 

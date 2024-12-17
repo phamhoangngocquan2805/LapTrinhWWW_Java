@@ -6,6 +6,6 @@ import vn.edu.iuh.fit.__PhamHoangNgocQuan_Lab05.backend.models.Experience;
 
 @Repository
 public interface ExperienceRepository extends JpaRepository<Experience, Long> {
-    // Thêm các query method tùy chỉnh nếu cần
+
 }
 

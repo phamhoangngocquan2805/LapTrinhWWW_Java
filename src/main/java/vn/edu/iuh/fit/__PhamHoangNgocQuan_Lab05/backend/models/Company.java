@@ -3,35 +3,39 @@ package vn.edu.iuh.fit.__PhamHoangNgocQuan_Lab05.backend.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "company")
-@Data
-@NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@NoArgsConstructor
+@Data
 public class Company {
-
     @Id
+    @Column(name = "comp_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "com_id")
-    private Long comId;
-
-    @Column(name = "comp_name", length = 255, nullable = false)
-    private String compName;
+    private Long id;
 
     @Column(name = "about", length = 2000)
     private String about;
 
-    @Column(name = "email", length = 255)
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "phone", length = 255)
+    @Column(name = "comp_name", nullable = false)
+    private String compName;
+
+    @Column(name = "phone", nullable = false)
     private String phone;
 
-    @Column(name = "web_url", length = 255)
+    @Column(name = "web_url")
     private String webUrl;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "address", referencedColumnName = "add_id")
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "address", nullable = false)
     private Address address;
+
+    @OneToMany(mappedBy = "company")
+    private List<Job> jobs;
+
 }

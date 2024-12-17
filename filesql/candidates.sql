@@ -76,4 +76,15 @@ CREATE TABLE IF NOT EXISTS `job_skill` (
   KEY `FKj33qbbf3vk1lvhqpcosnh54u1` (`skill_id`),
   CONSTRAINT `FK9ix4wg520ii2gu2felxdhdup6` FOREIGN KEY (`job_id`) REFERENCES `job` (`job_id`),
   CONSTRAINT `FKj33qbbf3vk1lvhqpcosnh54u1` FOREIGN KEY (`skill_id`) REFERENCES `skill` (`skill_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=LATIN1_SWEDISH_CI;
+
+CREATE TABLE IF NOT EXISTS `experience` (
+	`exp_id` BIGINT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`work_desc` VARCHAR(400) NOT NULL,
+	`company` VARCHAR(120) NOT NULL,
+	`role` VARCHAR(100) NOT NULL,
+	`from_date` DATE NOT NULL,
+	`to_date` DATE NOT NULL,
+	`can_id` BIGINT(20) NOT NULL,
+	CONSTRAINT fk_canId FOREIGN KEY (`can_id`) REFERENCES `candidate`(`id`)
+)ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=LATIN1_SWEDISH_CI;

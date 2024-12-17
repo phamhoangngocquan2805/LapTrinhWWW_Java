@@ -2,40 +2,49 @@ package vn.edu.iuh.fit.__PhamHoangNgocQuan_Lab05.backend.models;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "candidate")
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Data
 public class Candidate {
-
     @Id
+    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "can_id")
-    private Long canId;
+    private Long id;
 
-    @Column(name = "full_name", length = 255)
-    private String fullName;
+    @Column(name = "dob", nullable = false)
+    private LocalDate dob;
 
-    @Column(name = "email", length = 255)
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "phone", length = 15)
+    @Column(name = "full_name", nullable = false)
+    private String fullName;
+
+    @Column(name = "phone", nullable = false, length = 15)
     private String phone;
 
-    @Column(name = "dob")
-    @Temporal(TemporalType.DATE)
-    private Date dob;
-
-    @OneToOne
-    @JoinColumn(name = "address", referencedColumnName = "add_id")
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "address", nullable = false)
     private Address address;
 
-    public Candidate(String s, LocalDate of, Address add, String s1, String s2) {
+    @OneToMany(mappedBy = "candidate")
+    private List<CandidateSkill> candidateSkill;
+
+    @OneToMany(mappedBy = "candidate")
+    private List<Experience> experience;
+
+
+    public Candidate(LocalDate dob, String email, String fullName, String phone, Address address) {
+        this.dob = dob;
+        this.email = email;
+        this.fullName = fullName;
+        this.phone = phone;
+        this.address = address;
     }
+
 }

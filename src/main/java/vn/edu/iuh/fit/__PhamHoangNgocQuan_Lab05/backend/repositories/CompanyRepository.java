@@ -1,6 +1,8 @@
 package vn.edu.iuh.fit.__PhamHoangNgocQuan_Lab05.backend.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import vn.edu.iuh.fit.__PhamHoangNgocQuan_Lab05.backend.models.Address;
 import vn.edu.iuh.fit.__PhamHoangNgocQuan_Lab05.backend.models.Company;
 
 import java.util.List;
@@ -17,9 +19,8 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
     Company findByPhone(String phone);
 
     // Tìm kiếm công ty theo địa chỉ
-    List<Company> findByAddress(Long address);
+    @Query("SELECT c FROM Company c WHERE c.address = :address")
+    List<Company> findByAddress();
 
-    // Tìm kiếm công ty theo ID
-    Company findByComId(Long comId);
 }
 

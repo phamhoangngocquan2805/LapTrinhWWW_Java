@@ -1,27 +1,45 @@
 package vn.edu.iuh.fit.__PhamHoangNgocQuan_Lab05.backend.models;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import vn.edu.iuh.fit.__PhamHoangNgocQuan_Lab05.backend.enums.SkillType;
 
+import java.util.List;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "skill")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Skill {
-
     @Id
+    @Column(name = "skill_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "skill_id")
-    private Long skillId;
+    private Long id;
 
-    @Column(name = "skill_name", length = 150)
+    @Column(name = "skill_description")
+    private String skillDescription;
+
+    @Column(name = "skill_name")
     private String skillName;
 
-    @Column(name = "skill_desc", length = 300)
-    private String skillDesc;
+    @Enumerated(EnumType.STRING)
+    private SkillType type;
 
-    @Column(name = "skill_type")
-    private Integer skillType;
+    @OneToMany(mappedBy = "skill")
+    private List<JobSkill> jobSkills;
+
+    @OneToMany(mappedBy = "skill")
+    private List<CandidateSkill> candidateSkills;
+
+    public Skill() {
+    }
+
+    public Skill(Long id, String skillName, String skillDescription, SkillType type) {
+        this.id = id;
+        this.skillName = skillName;
+        this.skillDescription = skillDescription;
+        this.type = type;
+    }
+
 }

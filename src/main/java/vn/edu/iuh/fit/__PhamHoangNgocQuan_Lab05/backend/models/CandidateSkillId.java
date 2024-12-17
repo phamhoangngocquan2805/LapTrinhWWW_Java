@@ -12,7 +12,7 @@ import java.util.Objects;
 @Setter
 @Embeddable
 public class CandidateSkillId implements java.io.Serializable {
-    private static final long serialVersionUID = 2076147774567609242L;
+    private static final long serialVersionUID = -8953140824117161785L;
     @Column(name = "can_id", nullable = false)
     private Long canId;
 
